@@ -20,9 +20,10 @@ Jabra Node.js SDK
 
 ## Versions
 
-[![npm version](https://badge.fury.io/js/%40gnaudio%2Fjabra-node-sdk.svg)](https://badge.fury.io/js/%40gnaudio%2Fjabra-node-sdk)
+[![Build status](https://ci.appveyor.com/api/projects/status/prm9ojmbu1ip678k?svg=true)](https://ci.appveyor.com/project/martin-juul/jabra-node-sdk)
+[![Build Status](https://travis-ci.org/evercall/jabra-node-sdk.svg?branch=master)](https://travis-ci.org/evercall/jabra-node-sdk)
 
-Latest **STABLE** release is  [distributed on npmjs.com](https://www.npmjs.com/package/@gnaudio/jabra-node-sdk) (see [changelog](https://github.com/gnaudio/jabra-node-sdk/blob/master/CHANGELOG.md) for changes and notable defects). 
+Latest **STABLE** release is  [distributed on npmjs.com](https://www.npmjs.com/package/@gnaudio/jabra-node-sdk) (see [changelog](https://github.com/gnaudio/jabra-node-sdk/blob/master/CHANGELOG.md) for changes and notable defects).
 
 In addition, **BETA** versions may be available on npmjs with a version name ending with "-beta.X" specifier. For such BETA versions,the following applies:
 
@@ -48,8 +49,8 @@ In addition, **BETA** versions may be available on npmjs with a version name end
     3.2. Both `Visual C++ Build Tools` & `Python 2.7` can also be installed using command `npm install --global --production --add-python-to-path windows-build-tools`. To know more about this tool, see [this link.](https://github.com/felixrieseberg/windows-build-tools). **Note** For executing this command through `Windows Command Prompt` or `Windows PowerShell`, they should be ran in Administrator mode.
 4. **On Linux:** `build-essential` package for C++ compilation & `Python 2.7`.
 
-    4.1. **Udev rules:** To be able to communicate with Jabra devices with non-root privileges it is required to create a udev rule for Jabra devices. Place the udev rule in `/etc/udev/rules.d`, and follow naming guidelines for udev files.              
-    
+    4.1. **Udev rules:** To be able to communicate with Jabra devices with non-root privileges it is required to create a udev rule for Jabra devices. Place the udev rule in `/etc/udev/rules.d`, and follow naming guidelines for udev files.
+
     **Example:** The file name should be something like `80-jabra.rules` where the number before the dash indicates in what order the system reads the rules (e.g. if you had another rules file called `70-someotherrule.rules`, it would read that one first), the word after the dash is just an identifier of sorts (it could be something other than jabra) and the extension must be `.rules`.
 
     The contents of the file are:
