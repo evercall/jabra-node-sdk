@@ -1,0 +1,45 @@
+language: node_js
+sudo: required
+dist: trusty
+os:
+  - linux
+  - osx
+node_js: 15
+
+env:
+  - CC=clang CXX=clang++ npm_config_clang=1
+
+notifications:
+  email: false
+
+git:
+  depth: 10
+
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
+services:
+  - docker
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - xvfb
+      - libssl-dev
+
+install:
+  - npm install
+
+script:
+  - npm run prebuild-node
+  - npm run prebuild-electron
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker build -t jabra-node-sdk/i386 docker/i386 && docker run --rm -v ${PWD}:/project node-keytar/i386 /bin/bash -c "cd /project && npm run prebuild-node-ia32 && npm run prebuild-electron-ia32 && npm run prebuild-electron-arm64"; fi
+  - if [[ -n "$TRAVIS_TAG" ]]; then npm run upload; fi
