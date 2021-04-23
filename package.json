@@ -1,6 +1,6 @@
 {
   "name": "@evercall/jabra-node-sdk",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "NodeJS SDK for Jabra Devices. Forked to deliver prebuilt binaries",
   "main": "dist/main/index.js",
   "types": "dist/main/index.d.ts",
