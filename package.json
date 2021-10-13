@@ -1,11 +1,10 @@
 {
   "name": "@evercall/jabra-node-sdk",
-  "version": "3.2.2",
+  "version": "3.4.0",
   "description": "NodeJS SDK for Jabra Devices. Forked to deliver prebuilt binaries",
   "main": "dist/main/index.js",
   "types": "dist/main/index.d.ts",
   "keywords": [
-    "evercall",
     "jabra",
     "sdk"
   ],
@@ -23,32 +22,28 @@
     "build": "npm run build:dev",
     "build:dev": "node-gyp rebuild --debug && npm run tsc && npm run generatemeta",
     "build:release": "node-gyp rebuild && npm run tsc && npm run generatemeta",
-    "prebuild-node": "prebuild -t 8.9.0 -t 9.4.0 -t 10.11.0 -t 11.9.0 -t 12.0.0 -t 13.0.0 -t 14.0.0 -t 15.0.0 --strip",
-    "prebuild-node-ia32": "prebuild -t 8.9.0 -t 9.4.0 -t 10.11.0 -t 11.9.0 -t 12.0.0 -t 13.0.0 -t 14.0.0 -t 15.0.0 -a ia32 --strip",
-    "prebuild-node-arm64": "prebuild -t 8.9.0 -t 9.4.0 -t 10.11.0 -t 11.9.0 -t 12.0.0 -t 13.0.0 -t 14.0.0 -t 15.0.0 -a arm64 --strip",
-    "prebuild-electron": "prebuild -t 7.0.0 -t 8.0.0 -t 9.0.0 -t 10.0.0 -t 11.0.0 -t 12.0.0 -t 13.0.0 -r electron --strip",
-    "prebuild-electron-ia32": "prebuild -t 7.0.0 -t 8.0.0 -t 9.0.0 -t 10.0.0 -t 11.0.0 -t 12.0.0 -t 13.0.0 -r electron -a ia32 --strip",
-    "prebuild-electron-arm64": "prebuild -t 7.0.0 -t 8.0.0 -t 9.0.0 -t 10.0.0 -t 11.0.0 -t 12.0.0 -t 13.0.0 -r electron -a arm64 --strip",
-    "upload": "node ./script/upload.js",
     "tsc": "tsc",
     "prepare": "npm run tsc && npm run doc && node dist/script/generatemeta.js",
     "generatemeta": "ts-node src/script/generatemeta.ts",
-    "manualtest": "cross-env LIBJABRA_TRACE_LEVEL=trace ts-node src/manualtest/misc.ts",
-    "example-btn-press-ts": "cross-env LIBJABRA_TRACE_LEVEL=trace ts-node src/examples/button-press.ts",
-    "example-btn-press-js": "cross-env LIBJABRA_TRACE_LEVEL=trace ts-node src/examples/button-press.js",
-    "example-ringer-sequence": "cross-env LIBJABRA_TRACE_LEVEL=trace ts-node src/examples/ringer-sequence.ts",
+    "manualtest": "cross-env LIBJABRA_TRACE_LEVEL=${LIBJABRA_TRACE_LEVEL:-trace} ts-node src/manualtest/misc.ts",
+    "example-btn-press-ts": "cross-env LIBJABRA_TRACE_LEVEL=${LIBJABRA_TRACE_LEVEL:-trace} ts-node src/examples/button-press.ts",
+    "example-btn-press-js": "cross-env LIBJABRA_TRACE_LEVEL=${LIBJABRA_TRACE_LEVEL:-trace} ts-node src/examples/button-press.js",
+    "example-ringer-sequence": "cross-env LIBJABRA_TRACE_LEVEL=${LIBJABRA_TRACE_LEVEL:-trace} ts-node src/examples/ringer-sequence.ts",
     "doc": "typedoc --mode file --excludePrivate --excludeExternals --excludeNotExported --out dist/doc src/main",
     "clean": "node-gyp clean && rimraf dist",
     "pipeline-build-setversion": "node setversion.js"
   },
-  "author": "evercall",
+  "author": "GN Audio",
   "license": "MIT",
   "gypfile": true,
-  "homepage": "https://github.com/evercall/jabra-node-sdk/",
+  "homepage": "https://github.com/gnaudio/jabra-node-sdk/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/evercall/jabra-node-sdk.git",
+    "url": "https://github.com/gnaudio/jabra-node-sdk.git",
     "directory": "nodesdk"
+  },
+  "bugs": {
+    "url": "https://developer.jabra.com"
   },
   "devEngines": {
     "node": ">=10.0.0",
@@ -56,16 +51,12 @@
   },
   "dependencies": {
     "bindings": "1.5.0",
-    "node-addon-api": "1.7.1",
-    "prebuild-install": "^6.0.0"
+    "node-addon-api": "^3.0.2"
   },
   "devDependencies": {
     "@types/bindings": "1.3.0",
     "@types/node": "13.11.1",
     "cross-env": "7.0.2",
-    "node-abi": "^2.19.3",
-    "node-gyp": "^7.1.2",
-    "prebuild": "^10.0.1",
     "replace-in-file": "5.0.2",
     "rimraf": "3.0.2",
     "ts-node": "8.8.2",
